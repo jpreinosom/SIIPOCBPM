@@ -1,0 +1,40 @@
+import java.lang.Integer;
+import java.lang.Number;
+import java.lang.String;
+import java.util.List;
+import cii.sii.domain.Caso;
+import cii.sii.domain.Funcionario;
+
+//from row number: 1
+
+rule "Row 1 Asignar_Fiscalizador"
+	    no-loop true
+	    ruleflow-group "Asignar_Fiscal"
+	    dialect "mvel"
+	    when
+	        f1 : Caso( diferencia > 0 , diferencia <= 199999 )
+	    then
+		f1.setFuncionario("fiscalizador1");
+	end
+	
+	//from row number: 2
+rule "Row 2 Asignar_Fiscalizador"
+	    no-loop true
+	    ruleflow-group "Asignar_Fiscal"
+           dialect "mvel"
+   	when
+      		f1 : Caso( diferencia > 200000 , diferencia <= 499999 )
+	then
+		f1.setFuncionario( "fiscalizador2");
+	end
+	
+//from row number: 3
+rule "Row 3 Asignar_Fiscalizador"
+	no-loop true
+	ruleflow-group "Asignar_Fiscal"
+ 	dialect "mvel"	
+	when
+		f1 : Caso( diferencia > 500000 , diferencia <= 1000000 )
+ 	then
+		f1.setFuncionario( "fiscalizador3" );
+	end
